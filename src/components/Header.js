@@ -1,29 +1,40 @@
 import React from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
+import { ThemeConsumer } from '../utils/theme'
 
 import '../styles/Header.scss'
 
 export default function Header() {
     return (
-        <nav>
-            <ul className="header">
-                <li>
-                    <NavLink to='/'
-                    className="link" 
-                    activeStyle={{color: 'rgb(150, 50, 50)'}}
-                    exact >
-                        ⌘ Hackermedia
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink to='/new' 
-                    className="link" 
-                    activeStyle={{color: 'rgb(150, 50, 50)'}}
-                    exact >
-                        New
-                    </NavLink>
-                </li>
-            </ul>
-        </nav>
+        <ThemeConsumer>
+            {({ theme, toggleTheme }) => (
+            <nav className="header">
+                <ul>
+                    <li>
+                        <NavLink to='/'
+                        className={`link ${theme}`} 
+                        activeStyle={{color: 'rgb(165, 30, 30)'}}
+                        exact >
+                            ⌘ Hackermedia
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to='/new' 
+                        className={`link ${theme}`} 
+                        activeStyle={{color: 'rgb(165, 30, 30)'}}
+                        exact >
+                            New
+                        </NavLink>
+                    </li>
+                </ul>
+                <button
+                    className="themeButton"
+                    onClick={toggleTheme}
+                    >
+                    {theme === 'light' ? '🔦' : '💡'}
+                </button>
+            </nav> 
+            )}
+        </ThemeConsumer>
     )
 }

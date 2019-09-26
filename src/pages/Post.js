@@ -5,6 +5,10 @@ import { fetchComments, getItem } from '../utils/api'
 
 import CommentsView from '../components/CommentsView'
 import Loading from '../components/Loading'
+import MetaView from '../components/MetaView'
+
+import '../styles/Post.scss'
+import {ThemeConsumer} from '../utils/theme'
 
 export default class Post extends React.Component {
     constructor(props){
@@ -45,12 +49,16 @@ export default class Post extends React.Component {
         }
 
         return (
-            <div>
-                <h1>{story.title}</h1>
-                <div>{`by ${story.by}`}</div>
+            <ThemeConsumer>
+                {({theme}) => (
+                    <div className="commentContainer">
+                        <h1><a className={theme} href={story.url}>{story.title}</a></h1>
+                        <div><MetaView data={story} /></div>
 
-                {!comments ? <Loading text="Loading comments" /> : <CommentsView comments={comments}/>}
-            </div>
+                        {!comments ? <Loading text="Loading comments" /> : <CommentsView comments={comments}/>}
+                    </div>
+                )}
+            </ThemeConsumer>
         )
     }
 }

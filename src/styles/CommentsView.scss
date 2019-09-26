@@ -1,0 +1,21 @@
+@import "index.scss";
+
+ul.commentContainer {
+    padding: 0;
+}
+
+.commentCard {
+    list-style-type: none;
+    padding: 1rem;
+    border-radius: 1rem;
+    margin-bottom: 0.75rem;
+
+    &.light {
+        background: $lightPostBG;
+        color: rgb(40, 40, 40);
+    }
+    &.dark {
+        background: $darkPostBG;
+        color: $darkText;
+    }
+}

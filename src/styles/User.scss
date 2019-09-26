@@ -1,0 +1,56 @@
+@import "index.scss";
+
+.userContainer {
+    padding: 0 2rem;
+
+    p {
+        padding: 0;
+        margin: 0.3rem 0;
+    }
+
+    .userInfo {
+        margin: 0.3rem 0.3rem 1rem 0.3rem;
+        &.dark {
+            color: $darkText;
+            span {
+                color: $darkBolded;
+            }
+        }
+    
+        &.light {
+            color: $lightText;
+            span {
+                color: $lightBolded;
+            }
+        }
+        
+    }
+}
+
+.userTitle {
+    margin-bottom: 0.75rem;
+    &.dark {
+        color: $boldDarkRed;
+    }
+    &.light {
+        color: $boldLightRed;
+    }
+}
+
+.about { // so much work for 1 word...
+    &.dark {
+        color: $darkText;
+    }
+    &.light {
+        color: $lightText;
+    }
+}
+
+.postsWord { // so much work for 1 word...
+    &.dark {
+        color: $darkBolded;
+    }
+    &.light {
+        color: $lightBolded;
+    }
+}

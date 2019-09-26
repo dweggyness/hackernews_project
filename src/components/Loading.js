@@ -1,6 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import '../styles/Loading.scss'
+import {ThemeConsumer} from '../utils/theme'
+
 export default class Loading extends React.Component {
     constructor(props) {
         super(props)
@@ -25,9 +28,13 @@ export default class Loading extends React.Component {
 
     render() {
         return (
-            <h3 className="loadingContainer">
-                <span>{this.state.content}</span>
-            </h3>
+            <ThemeConsumer>
+                {({ theme }) => (
+                    <h3 className={`loading ${theme}`}>
+                        <span>{this.state.content}</span>
+                    </h3>   
+                )}
+            </ThemeConsumer>
         )
     }
 }

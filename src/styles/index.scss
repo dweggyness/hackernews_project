@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans:400,700&display=swap');
+
+// honestly not the best way to do this I think, but I didn't make this with theming in mind
+// so now I pay the price
+
+$lightPostBG: rgba( 230, 230, 230, 0.9);
+$darkPostBG: rgba( 15, 15, 15, 0.9);
+
+$lightRed: rgb(165, 30, 30);
+$boldLightRed: rgb(99, 30, 30);
+
+$darkRed: rgb(206, 41, 41);
+$boldDarkRed: rgb(165, 30, 30);
+
+$lightText: rgb( 85, 85, 85);
+$darkText: rgb( 180, 180, 180);
+
+$lightBolded: rgb(15, 15, 15);
+$darkBolded: rgb( 240, 240, 240);
+
+body, html {
+    min-height: 100vh;
+    min-width: 100%;
+    font-family: "Noto Sans", "Open Sans";
+    font-size: calc(12px + 0.7vw);
+}
+
+.mainContainer {
+    border-radius: 3rem;
+    margin: 3rem 3.5rem;
+    padding: 1rem 1.5rem;
+    
+    &.dark {
+        background: rgba(30,30,30, 0.8);
+    }
+    &.light {
+        background: rgba(220,220,220, 0.8);
+    }
+}
+
+@media only screen and (max-width: 721px) {
+    .mainContainer {
+        margin: 2rem 2.4rem;
+        padding: 0.5rem 0.8rem;
+    }
+}

@@ -1,24 +1,52 @@
-@import "Variables.scss";
+@import "index.scss";
 
 .header {
-    list-style-type: none;
     display: flex;
-    flex-direction: row;
-
+    justify-content: space-between;
     font-weight: 700;
 
-    li {
-        font-size: 1.4rem;
-        margin-right: 0.7rem;
-        text-decoration: none;
+    ul {
+        list-style-type: none;
+        display: flex;
+        flex-direction: row;
 
-        .link {
+        li {
+            font-size: 1.4rem;
+            margin-right: 0.7rem;
             text-decoration: none;
-            color: $dark-black;
 
-            &:hover{
-                color: $red;
+            .link {
+                text-decoration: none;
+
+                &.light {
+                    color: $lightBolded;
+                }
+                &.dark {
+                    color: $darkBolded;
+                }
+
+                &:hover, &:focus {
+                    color: $lightRed;
+                }
             }
         }
     }
+    
+    .themeButton {
+        font-size: 2rem;
+        background: transparent;
+        border: none;
+        margin-right: 2rem;
+
+        &:hover, &:focus {
+            cursor: pointer;
+            animation: buttonHover 1s ease infinite;
+        }
+    }
+}
+
+@keyframes buttonHover {
+    0% {transform: scale(1)}
+    50% {transform: scale(1.1)}
+    100% {transform: scale(1)}
 }

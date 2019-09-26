@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom'
 import '../styles/StoriesView.scss'
 import MetaView from './MetaView'
 
+import {ThemeConsumer} from '../utils/theme'
+
 // stateless functional component to render stories, 
 // given an array of 'story objects'
 
@@ -14,39 +16,23 @@ import MetaView from './MetaView'
 export default function StoriesView(props) {
     const { stories } = props
     return (
-        <ul className="storyContainer">
-            {stories.map((story, i) => (
-                <li key={i} className="card">
-                    <div className="scoreContainer">
-                        <span>{story.score}</span>
-                    </div>
-                    <div className="postContainer">
-                        <a className='storyLink' href={story.url}>{story.title}</a>
-                        <div className="subText">
-                            {'by '}
-                            <Link
-                                className="link"
-                                to={{
-                                    pathname: '/user',
-                                    search: `?id=${story.by}`
-                                }} >
-                                {story.by}
-                            </Link>
-                            <TimeFormatter time={story.time} />
-                            <Link
-                                className="link"
-                                to={{
-                                    pathname: '/post',
-                                    search: `?id=${story.id}`
-                                }} >
-                                {story.descendants}
-                            </Link>
-                            {` comments`}
+        <ThemeConsumer>
+        {({ theme }) => (
+            <ul className='storyContainer'>
+                {stories.map((story, i) => (
+                    <li key={i} className="card">
+                        <div className={`scoreContainer ${theme}`}>
+                            <span className={theme}>{story.score}</span>
                         </div>
-                    </div>
-                </li>
-            ))}
-        </ul>
+                        <div className={`postContainer ${theme}`}>
+                            <a className={`storyLink ${theme}`} href={story.url}>{story.title}</a>
+                            <MetaView data={story} />
+                        </div>
+                    </li>
+                ))}
+            </ul>
+        )}
+        </ThemeConsumer>
     )
 }
 

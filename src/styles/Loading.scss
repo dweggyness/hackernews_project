@@ -1,0 +1,14 @@
+@import "index.scss";
+
+.loading {
+    display: flex;
+    justify-content: center;
+    font-size: 1.2rem;
+
+    &.dark {
+        color: $darkBolded;
+    }
+    &.light {
+        color: $lightBolded;
+    }
+}

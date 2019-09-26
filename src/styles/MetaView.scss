@@ -1,11 +1,27 @@
-@import "Variables.scss";
+@import "index.scss";
 
 .subText {
     font-size: 0.8rem;
-    color: $black;
+
+    &.dark {
+        color: $darkText;
+    }
+    &.light {
+        color: $lightText;
+    }
 }
 
 .link {
-    text-decoration: none;
-    color: $dark-black;
+    text-decoration: underline;
+
+    &.dark {
+        color: $darkBolded;
+    }
+    &.light {
+        color: $lightBolded;
+    }
+
+    &:hover, &:focus {
+        color: $lightRed;
+    }
 }

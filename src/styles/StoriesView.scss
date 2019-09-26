@@ -1,4 +1,4 @@
-@import "Variables.scss";
+@import "index.scss";
 
 .card {
     margin: 0.5rem 0;
@@ -12,21 +12,40 @@
     justify-content: center;
     align-items: center;
     min-width: 2.5rem;
-    background-color: rgba(190, 190, 190, 0.5);
     border-radius: 0.5rem 0 0 0.5rem;
+
+    &.dark {
+        background-color: rgba(65, 65, 65, 0.8);
+    }
+    &.light {
+        background-color: rgba(190, 190, 190, 0.5);
+    }
 
     span {
         margin: 0 auto;
         vertical-align: middle;
         font-size: 0.8rem;
-        color: $dark-black
-    }
+
+        &.dark {
+            color: $darkBolded;
+        }
+        &.light {
+            color: $lightBolded;
+        }
+    }  
 }
 
 .postContainer {
-    background: rgba( 220, 220, 220, 0.8 );
     width: 100%;
     padding-left: 0.5rem;
+
+    &.dark {
+        background-color: $darkPostBG;
+    }
+
+    &.light {
+        background-color: $lightPostBG;
+    }
 }
 
 .storyContainer {
@@ -36,21 +55,22 @@
 
 .storyLink {
     text-decoration: none;
-    color: $red;
+
+    &.dark {
+        color: $darkRed;
+    }
+    &.light {
+        color: $lightRed;
+    }
 
     &:visited {
-        color: $dark-red;
+        &.dark {
+            color: $boldDarkRed;
+        }
+        &.light {
+            color: $boldLightRed;
+        }
     }
-}
-
-.subText {
-    font-size: 0.8rem;
-    color: $black;
-}
-
-.link {
-    text-decoration: none;
-    color: $dark-black;
 }
 
 @media only screen and (max-width: 721px) {
