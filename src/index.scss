@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans:400,700&display=swap');
+
+body, html {
+    min-height: 100vh;
+    min-width: 100%;
+    background-image: linear-gradient(to top, #0c3483 0%, #a2b6df 80%, #6b8cce 80%, #a2b6df 80%);
+    font-family: "Noto Sans", "Open Sans";
+    font-size: calc(12px + 0.7vw);
+}
+
+.mainContainer {
+    background: rgba(220,220,220, 0.8);
+    border-radius: 3rem;
+    margin: 3rem 3.5rem;
+    padding: 1rem 1.5rem;
+}
+
+@media only screen and (max-width: 721px) {
+    .mainContainer {
+        margin: 2rem 2.4rem;
+        padding: 0.5rem 0.8rem;
+    }
+}
