@@ -8,57 +8,46 @@ import Loading from '../components/Loading'
 import MetaView from '../components/MetaView'
 
 import '../styles/Post.scss'
-import {ThemeConsumer} from '../utils/theme'
+import ThemeContext from '../utils/theme'
 
-export default class Post extends React.Component {
-    constructor(props){
-        super(props)
+export default function Post(props) {
+    const [ story, setStory ] = React.useState(null)
+    const [ comments, setComments] = React.useState(null)
 
-        this.state = {
-            story: null,
-            comments: null
-        }
-    }
+    const theme = React.useContext(ThemeContext)
 
-    componentDidMount() {
-        const { id } = queryString.parse(this.props.location.search)
+    React.useEffect(() => {
+        const { id } = queryString.parse(props.location.search)
 
-        this.getComments(id)    
-        this.getTitle(id)
-    }
+        getComments(id)    
+        getTitle(id)
+    })
 
-    getComments(postID) {
+    const getComments = (postID) => {
         fetchComments(postID)
         .then((data) => {
-            this.setState({ comments: data })
+            setComments(data)
         })
     }
 
-    getTitle(postID) {
+    const getTitle = (postID) => {
         getItem(postID)
         .then((data) => {
-            this.setState({ story: data })
+            setStory(data)
         })
     }
 
-    render() {
-        const { story, comments} = this.state
 
-        if(!(story)){
-            return <Loading text="Loading post"/>
-        }
-
-        return (
-            <ThemeConsumer>
-                {({theme}) => (
-                    <div className="commentContainer">
-                        <h1><a className={theme} href={story.url}>{story.title}</a></h1>
-                        <div><MetaView data={story} /></div>
-
-                        {!comments ? <Loading text="Loading comments" /> : <CommentsView comments={comments}/>}
-                    </div>
-                )}
-            </ThemeConsumer>
-        )
+    if(!(story)){
+        return <Loading text="Loading post"/>
     }
+
+    return (
+        <div className="commentContainer">
+            <h1><a className={theme} href={story.url}>{story.title}</a></h1>
+            <div><MetaView data={story} /></div>
+
+            {!comments ? <Loading text="Loading comments" /> : <CommentsView comments={comments}/>}
+        </div>
+    )
 }

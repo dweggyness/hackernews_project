@@ -53,6 +53,8 @@ export async function getStories(IDs){
     const stories = items.filter((item) => {
         if(item) {
             return item.type === "story"
+        } else {
+            return null
         }
     })
 

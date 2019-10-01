@@ -5,36 +5,26 @@ import { fetchTopStories } from '../utils/api'
 import StoriesView from '../components/StoriesView'
 import Loading from '../components/Loading'
 
+export default function Top() {
+    const [stories, setStories] = React.useState(null)
 
-export default class Top extends React.Component {
-    constructor(props){
-        super(props)
+    React.useEffect(() => {
+        getStories(0, 30)
+    }, [])
 
-        this.state = {
-            stories : null
-        }
-    }
-
-    componentDidMount() {
-        this.getStories(0, 30)
-    }
-
-    async getStories(start, end) {
+    const getStories = async (start,end) => {
         const data = await fetchTopStories(start, end)
-        this.setState({ stories: data })
+        setStories(data)
     }
 
-    render() {
-        const { stories } = this.state
-        
-        if(!stories){
-            return <Loading />
-        }
-
-        return (
-            <div>
-                {stories && <StoriesView stories={stories}/>}
-            </div>
-        )
+    
+    if(!stories){
+        return <Loading />
     }
+
+    return (
+        <div>
+            {stories && <StoriesView stories={stories}/>}
+        </div>
+    )
 }

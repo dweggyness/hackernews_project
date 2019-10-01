@@ -2,41 +2,30 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import '../styles/Loading.scss'
-import {ThemeConsumer} from '../utils/theme'
+import ThemeContext from '../utils/theme'
 
-export default class Loading extends React.Component {
-    constructor(props) {
-        super(props)
+export default function Loading(props) {
+    const [ content, setContent ] = React.useState(props.text)
 
-        this.state = {
-            content: this.props.text
-        }
-    }
-    componentDidMount() {
-        const { text } = this.props
+    const theme = React.useContext(ThemeContext)
+
+    React.useEffect(() => {
+        const { text } = props
         
-        this.interval = window.setInterval(() => {
-            this.state.content === text + '...'
-                ? this.setState({ content: text })
-                : this.setState(({content}) => ({ content: content + '.'}))
+        const id = window.setInterval(() => {
+            content === text + '...'
+                ? setContent( text )
+                : setContent((content) => content + '.')
         }, 350)
-    }
 
-    componentWillUnmount() {
-        window.clearInterval(this.interval)
-    }
+        return (() => window.clearInterval(id));
+    }, [content, props])
 
-    render() {
-        return (
-            <ThemeConsumer>
-                {({ theme }) => (
-                    <h3 className={`loading ${theme}`}>
-                        <span>{this.state.content}</span>
-                    </h3>   
-                )}
-            </ThemeConsumer>
-        )
-    }
+    return (
+        <h3 className={`loading ${theme}`}>
+            <span>{content}</span>
+        </h3>   
+    )
 }
 
 Loading.propTypes = {

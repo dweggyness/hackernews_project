@@ -1,11 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
 
 import '../styles/StoriesView.scss'
 import MetaView from './MetaView'
 
-import {ThemeConsumer} from '../utils/theme'
+import ThemeContext from '../utils/theme'
 
 // stateless functional component to render stories, 
 // given an array of 'story objects'
@@ -15,24 +14,22 @@ import {ThemeConsumer} from '../utils/theme'
 
 export default function StoriesView(props) {
     const { stories } = props
+
+    const theme = React.useContext(ThemeContext)
     return (
-        <ThemeConsumer>
-        {({ theme }) => (
-            <ul className='storyContainer'>
-                {stories.map((story, i) => (
-                    <li key={i} className="card">
-                        <div className={`scoreContainer ${theme}`}>
-                            <span className={theme}>{story.score}</span>
-                        </div>
-                        <div className={`postContainer ${theme}`}>
-                            <a className={`storyLink ${theme}`} href={story.url}>{story.title}</a>
-                            <MetaView data={story} />
-                        </div>
-                    </li>
-                ))}
-            </ul>
-        )}
-        </ThemeConsumer>
+        <ul className='storyContainer'>
+            {stories.map((story, i) => (
+                <li key={i} className="card">
+                    <div className={`scoreContainer ${theme}`}>
+                        <span className={theme}>{story.score}</span>
+                    </div>
+                    <div className={`postContainer ${theme}`}>
+                        <a className={`storyLink ${theme}`} href={story.url}>{story.title}</a>
+                        <MetaView data={story} />
+                    </div>
+                </li>
+            ))}
+        </ul>
     )
 }
 
